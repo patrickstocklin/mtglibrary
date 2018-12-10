@@ -28,9 +28,10 @@ public class Controller {
             method = RequestMethod.GET,
             path = "/{cardName}/price")
     @ResponseStatus(HttpStatus.OK)
-    public void getPrice(@PathVariable("cardName") String cardName) {
+    public ResponseEntity<ScryfallResponse> getPrice(@PathVariable("cardName") String cardName) {
         LOGGER.info("Getting Card Name: {}", cardName);
         ScryfallResponse response = scryfallClient.getPrice(cardName);
         LOGGER.info("Current Price: ${}", response.getUsd());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
