@@ -10,9 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class Controller {
+@CrossOrigin(origins = "*") //TODO change me!
+public class ScryfallController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScryfallController.class);
 
     @Autowired
     private ScryfallClient scryfallClient;
@@ -22,6 +23,14 @@ public class Controller {
             path = "/health")
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Magic Time");
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/pong")
+    public String pong() {
+        LOGGER.info("Received Signal from Webapp");
+        return "pong";
     }
 
     @RequestMapping(
