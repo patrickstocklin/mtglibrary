@@ -33,7 +33,7 @@ class Main extends Component {
 
     getCardPrice(someName) {
       var cardName = someName;
-      axios.get("http://localhost:8080/"+cardName+"/price").then(res => {
+      axios.get("http://0.0.0.0:8080/"+cardName+"/price").then(res => {
               this.setState({price : "$"+res.data.usd});
               this.setState({cardName : cardName});
             }, err => {
